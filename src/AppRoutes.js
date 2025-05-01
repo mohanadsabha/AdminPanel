@@ -5,17 +5,21 @@ import Login from "./pages/cms/auth/Login";
 import Table from "./pages/cms/users/Table";
 import Form from "./pages/cms/users/Form";
 import Register from "./pages/cms/auth/Register";
+import { useSelector } from "react-redux";
 
 export default function AppRoutes() {
-  const authenticated = true;
+  const isLoggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <Routes>
       <Route path="*" element={<Navigate to="/login" />} />
-      <Route path="/login" element={<Login />} />
+      <Route
+        path="/login"
+        element={isLoggedIn ? <Navigate to="/cms/admin" /> : <Login />}
+      />
       <Route path="/register" element={<Register />} />
       <Route
         path="/cms/admin"
-        element={authenticated ? <Parent /> : <Navigate to="/login" />}
+        element={isLoggedIn ? <Parent /> : <Navigate to="/login" />}
       >
         <Route path="/cms/admin/first-demo" element={<FirstDemo />} />
         <Route path="/cms/admin/users" element={<Table />} />

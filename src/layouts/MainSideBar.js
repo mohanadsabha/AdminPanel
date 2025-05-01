@@ -1,11 +1,18 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import CmsNav from "../components/cms/CmsNav";
 import { SideBarItems } from "../config/side-bar-item";
+import { useDispatch } from "react-redux";
+import { authActions } from "../redux/authSlice";
 
 export default function MainSideBar() {
-  const location = useLocation();
-  const nevigate = useNavigate();
-  const logout = () => {};
+  // const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(authActions.logout());
+    localStorage.removeItem("token");
+    navigate("/login", { replace: true });
+  };
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <a href="index3.html" className="brand-link">

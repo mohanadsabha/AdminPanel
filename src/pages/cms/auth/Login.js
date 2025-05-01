@@ -18,7 +18,8 @@ export default function Login() {
           email: emailRef.current.value,
           password: passwordRef.current.value,
         });
-        localStorage.setItem("token", token);
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("token", `Bearer ${token}`);
         dispatch(authActions.login({ token, user: data.user }));
         navigate("/cms/admin", { replace: true });
       } catch (err) {
