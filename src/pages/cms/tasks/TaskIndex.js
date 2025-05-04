@@ -14,18 +14,15 @@ export default function TaskIndex() {
   const editModalRef = useRef(null);
 
   const getData = async () => {
-    if (tasks.length === 0) {
-      try {
-        const response = await getAllTasks();
-        dispatch(taskActions.index(response.data));
-        setFiltered(response.data);
-      } catch (err) {
-        alert(`${err.message}. Please Log in again`);
-      }
-    } else {
-      setFiltered(tasks);
+    try {
+      const response = await getAllTasks();
+      dispatch(taskActions.index(response.data));
+      setFiltered(response.data);
+    } catch (err) {
+      alert(`${err.message}. Please Log in again`);
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
