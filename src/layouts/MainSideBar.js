@@ -11,6 +11,7 @@ export default function MainSideBar() {
   const logout = () => {
     dispatch(authActions.logout());
     localStorage.removeItem("token");
+    localStorage.setItem("loggedIn", false);
     navigate("/login", { replace: true });
   };
   return (
@@ -102,6 +103,11 @@ export default function MainSideBar() {
               label="Users"
               path="/cms/admin/users"
               items={SideBarItems.users}
+            />
+            <CmsNav
+              label="Tasks"
+              path="/cms/admin/tasks"
+              items={SideBarItems.tasks}
             />
             <li className="nav-header">Settings</li>
             <li className="nav-item">

@@ -19,8 +19,8 @@ export default function CmsNav(props) {
         </p>
       </Link>
       <ul className="nav nav-treeview" style={{ display: "none" }}>
-        {props.items.map((element) => (
-          <CmsNavItem item={element} />
+        {props.items.map((element, i) => (
+          <CmsNavItem key={i} item={element} />
         ))}
       </ul>
     </li>
